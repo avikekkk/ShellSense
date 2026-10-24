@@ -19,12 +19,13 @@ export default class ShellSenseExtension extends Extension {
         this._syncAll();
     }
 
-    // metadata.json lists "unlock-dialog" so that locking the screen does not
-    // call disable(): that would wipe the clipboard history, which is kept in
-    // memory only. While locked, every tool except the clipboard recorder is
-    // stopped (see _syncTool), and the clipboard tool drops its popup,
-    // shortcut and key handlers (see ClipboardTool._syncUi).
     disable() {
+        // Why "unlock-dialog" is in metadata.json: without it, locking the
+        // screen calls disable(), which would wipe the clipboard history (it
+        // is kept in memory only). While locked, every tool except the
+        // clipboard recorder is stopped (see _syncTool), and the clipboard
+        // tool drops its popup, shortcut and key handlers (see
+        // ClipboardTool._syncUi).
         Main.sessionMode.disconnectObject(this);
 
         for (const id of this._signalIds)

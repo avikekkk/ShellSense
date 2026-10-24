@@ -1,4 +1,5 @@
 import Clutter from 'gi://Clutter';
+import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import St from 'gi://St';
 
@@ -10,11 +11,12 @@ import {addToPanel, readText} from './util.js';
 // traffic twice (e.g. VPN tunnel + the physical interface under it).
 const IGNORED_IFACES = /^(lo|veth|docker|br-|virbr|vnet|tun|tap|wg|tailscale|zt)/;
 
-function readCounters() {
+async function readCounters(cancellable) {
+    const text = await readText('/proc/net/dev', cancellable);
     let rx = 0, tx = 0;
 
     // First two lines are headers.
-    for (const line of readText('/proc/net/dev').split('\n').slice(2)) {
+    for (const line of text.split('\n').slice(2)) {
         const sep = line.indexOf(':');
         if (sep < 0)
             continue;
@@ -54,6 +56,7 @@ export class NetSpeedTool {
         this._last = null;
         this._down = 0;
         this._up = 0;
+        this._cancellable = new Gio.Cancellable();
 
         this._buildIndicator();
 
@@ -75,6 +78,8 @@ export class NetSpeedTool {
         this._settingIds = null;
 
         this._stopTimer();
+        this._cancellable.cancel();
+        this._cancellable = null;
         this._indicator?.destroy();
         this._indicator = null;
         this._label = null;
@@ -122,12 +127,13 @@ export class NetSpeedTool {
         }
     }
 
-    _tick() {
+    async _tick() {
         let now;
         try {
-            now = readCounters();
+            now = await readCounters(this._cancellable);
         } catch (e) {
-            console.error(`[ShellSense] net-speed: ${e}`);
+            if (!e.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+                console.error(`[ShellSense] net-speed: ${e}`);
             return;
         }
 

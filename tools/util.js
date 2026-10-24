@@ -6,10 +6,19 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
 const decoder = new TextDecoder();
 
-// Read a small file (e.g. from /proc or /sys) as text.
-export function readText(path) {
-    const [, bytes] = Gio.File.new_for_path(path).load_contents(null);
-    return decoder.decode(bytes);
+// Read a small file (e.g. from /proc or /sys) as text, without blocking
+// the shell.
+export function readText(path, cancellable = null) {
+    return new Promise((resolve, reject) => {
+        Gio.File.new_for_path(path).load_contents_async(cancellable, (file, res) => {
+            try {
+                const [, bytes] = file.load_contents_finish(res);
+                resolve(decoder.decode(bytes));
+            } catch (e) {
+                reject(e);
+            }
+        });
+    });
 }
 
 // Add a panel indicator using the "<prefix>-position" / "<prefix>-index" settings.
