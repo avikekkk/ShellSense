@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.shellsense" path="/org/gnome/shell/extensions/shellsense/">
+
+    <!-- Internet speed -->
+    <key name="net-speed-enabled" type="b">
+      <default>true</default>
+      <summary>Show internet speed in the top bar</summary>
+    </key>
+    <key name="net-speed-interval" type="d">
+      <range min="0.5" max="10"/>
+      <default>1.0</default>
+      <summary>Refresh interval in seconds</summary>
+    </key>
+    <key name="net-speed-display" type="s">
+      <choices>
+        <choice value="both"/>
+        <choice value="down"/>
+        <choice value="up"/>
+        <choice value="total"/>
+      </choices>
+      <default>'both'</default>
+      <summary>What to show: download+upload, download only, upload only, or combined total</summary>
+    </key>
+    <key name="net-speed-position" type="s">
+      <choices>
+        <choice value="left"/>
+        <choice value="center"/>
+        <choice value="right"/>
+      </choices>
+      <default>'right'</default>
+      <summary>Top bar section</summary>
+    </key>
+    <key name="net-speed-index" type="i">
+      <range min="0" max="20"/>
+      <default>0</default>
+      <summary>Position inside the top bar section (0 = first)</summary>
+    </key>
+    <key name="net-speed-use-bits" type="b">
+      <default>false</default>
+      <summary>Show bits per second (Mb/s) instead of bytes (MB/s)</summary>
+    </key>
+    <key name="net-speed-hide-idle" type="b">
+      <default>false</default>
+      <summary>Hide indicator when there is no traffic</summary>
+    </key>
+
+    <!-- App grid -->
+    <key name="app-grid-sort-enabled" type="b">
+      <default>true</default>
+      <summary>Sort the app grid alphabetically</summary>
+    </key>
+    <key name="app-grid-sort-folders" type="s">
+      <choices>
+        <choice value="alphabetical"/>
+        <choice value="start"/>
+        <choice value="end"/>
+      </choices>
+      <default>'alphabetical'</default>
+      <summary>Where folders go: mixed with apps, before apps, or after apps</summary>
+    </key>
+    <key name="app-grid-sort-folder-contents" type="b">
+      <default>true</default>
+      <summary>Also sort apps inside folders</summary>
+    </key>
+    <key name="app-grid-two-line-enabled" type="b">
+      <default>true</default>
+      <summary>Show app names on up to two lines in the app grid</summary>
+    </key>
+
+    <!-- Caffeine -->
+    <key name="caffeine-enabled" type="b">
+      <default>true</default>
+      <summary>Add a Caffeine toggle to Quick Settings</summary>
+    </key>
+    <key name="caffeine-show-indicator" type="b">
+      <default>true</default>
+      <summary>Show a top bar icon while Caffeine is on</summary>
+    </key>
+    <key name="caffeine-restore" type="b">
+      <default>false</default>
+      <summary>Restore Caffeine after login if it was left on</summary>
+    </key>
+    <key name="caffeine-active" type="b">
+      <default>false</default>
+      <summary>Internal: whether Caffeine was left on indefinitely</summary>
+    </key>
+
+    <!-- Clipboard history -->
+    <key name="clipboard-enabled" type="b">
+      <default>true</default>
+      <summary>Keep a clipboard history in the top bar</summary>
+    </key>
+    <key name="clipboard-shortcut" type="as">
+      <default>[]</default>
+      <summary>Shortcut to open the clipboard history</summary>
+      <description>Empty by default: extensions.gnome.org doesn't allow default shortcuts for clipboard access.</description>
+    </key>
+    <key name="clipboard-history-size" type="i">
+      <range min="5" max="200"/>
+      <default>30</default>
+      <summary>Number of entries to keep</summary>
+    </key>
+    <key name="clipboard-paste-on-select" type="b">
+      <default>true</default>
+      <summary>Paste into the focused window after picking an entry</summary>
+    </key>
+
+    <!-- Color picker -->
+    <key name="color-picker-enabled" type="b">
+      <default>true</default>
+      <summary>Pick a color from the screen with a shortcut</summary>
+    </key>
+    <key name="color-picker-shortcut" type="as">
+      <default><![CDATA[['<Alt>p']]]></default>
+      <summary>Shortcut to start the color picker</summary>
+    </key>
+    <key name="color-picker-format" type="s">
+      <choices>
+        <choice value="hex"/>
+        <choice value="rgb"/>
+      </choices>
+      <default>'hex'</default>
+      <summary>Copy colors as #rrggbb or rgb(r, g, b)</summary>
+    </key>
+
+    <!-- Top bar -->
+    <key name="hide-activities-enabled" type="b">
+      <default>true</default>
+      <summary>Hide the Activities button in the top bar</summary>
+    </key>
+
+  </schema>
+</schemalist>

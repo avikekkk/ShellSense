@@ -1,0 +1,10 @@
+{
+  "uuid": "shellsense@avisek",
+  "name": "ShellSense",
+  "description": "Small everyday tools for GNOME Shell, each with its own on/off switch:\n\n* Internet speed meter in the top bar\n* Clipboard history with search and paste\n* Color picker (Alt+P) that copies hex or rgb\n* Caffeine: keep the screen on and prevent suspend\n* Alphabetical app grid and two-line app names\n* Hide the Activities button\n\nClipboard access: the clipboard history tool reads every text you copy and keeps it in memory only (never written to disk or sent anywhere); entries marked secret by password managers are skipped. It keeps recording while the screen is locked so the history survives locking. Its shortcut is not set by default; choose one in the preferences. The color picker writes the picked color to the clipboard.",
+  "shell-version": ["46"],
+  "settings-schema": "org.gnome.shell.extensions.shellsense",
+  "session-modes": ["user", "unlock-dialog"],
+  "url": "https://github.com/avikekkk/ShellSense",
+  "version-name": "1.0"
+}

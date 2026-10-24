@@ -1,0 +1,52 @@
+/* Our top bar buttons: half of GNOME's default side padding, so they sit
+   close to their neighbours instead of floating in wide gaps. */
+.panel-button.shellsense-panel-button {
+    -natural-hpadding: 6px;
+    -minimum-hpadding: 4px;
+}
+
+/* Tabular digits keep the label from jittering as numbers change.
+   Otherwise left at the clock's size so both sit on one text line. */
+.shellsense-netspeed-label {
+    font-feature-settings: "tnum";
+}
+
+/* Room for two lines of text; the third line is cut off with "…".
+   3em leaves slack for fonts with taller line height. */
+.shellsense-two-line-label {
+    max-height: 3em;
+}
+
+/* Clipboard history */
+/* No arrow: there's no button for it to point at. */
+.shellsense-clipboard-popup {
+    -arrow-rise: 0;
+}
+
+.shellsense-clipboard-search {
+    width: 22em;
+}
+
+.shellsense-clipboard-scroll {
+    max-height: 26em;
+}
+
+.shellsense-clipboard-label {
+    max-width: 20em;
+}
+
+.shellsense-clipboard-swatch {
+    width: 1em;
+    height: 1em;
+    border-radius: 4px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.shellsense-clipboard-remove {
+    padding: 4px;
+    border-radius: 99px;
+}
+
+.shellsense-clipboard-remove:hover {
+    background-color: rgba(128, 128, 128, 0.25);
+}
