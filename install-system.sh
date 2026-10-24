@@ -17,7 +17,8 @@ sudo cp -r "$SRC" "$DEST"
 
 # Don't ship dev/test/packaging files in the system copy
 sudo rm -rf "$DEST/install.sh" "$DEST/install-system.sh" "$DEST/test-nested.sh" \
-    "$DEST/pack.sh" "$DEST/dist" "$DEST/README.md" "$DEST/.git" "$DEST/.gitignore"
+    "$DEST/pack.sh" "$DEST/dist" "$DEST/README.md" "$DEST/.git" "$DEST/.gitignore" \
+    "$DEST/.agents" "$DEST/.claude" "$DEST/skills-lock.json"
 
 echo "Installed to $DEST"
 echo "Every user must still enable it once after logging in:"

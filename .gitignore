@@ -1,2 +1,7 @@
 dist/
 schemas/gschemas.compiled
+
+# Local agent skills (npx skills)
+.agents/
+.claude/
+skills-lock.json
